@@ -18,5 +18,14 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, "src")
     }
+  },
+  server: {
+    proxy: { // 配置域名代理
+      "/api": {
+        target: "http://localhost:5000/api/",
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ""),
+      },
+    },
   }
 })
