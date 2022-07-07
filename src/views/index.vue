@@ -1,3 +1,9 @@
+<template>
+  <div>
+    <a-button>123</a-button>
+  </div>
+</template>
+
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useStore } from 'vuex'
@@ -11,26 +17,5 @@ login({account: 'wukaoyu', password: '123456', identity: 1}).then(res => {
 })
 </script>
 
-<template>
-  <div>
-    {{count}}
-  </div>
-</template>
-
-<style scoped>
-a {
-  color: #42b983;
-}
-
-label {
-  margin: 0 0.5em;
-  font-weight: bold;
-}
-
-code {
-  background-color: #eee;
-  padding: 2px 4px;
-  border-radius: 4px;
-  color: #304455;
-}
+<style scoped lang="less">
 </style>

@@ -1,5 +1,10 @@
 import Axios from "axios";
 
+interface IResponse {
+  errno: number,
+  data: any
+}
+
 let baseUrl:string
 if (process.env.NODE_ENV === 'development') {
   baseUrl = '/api'
@@ -29,7 +34,7 @@ Axios.interceptors.response.use(function (response) {
 });
 export const request = (options: { data: any; url: string; method: string; }) => {
   const { data, url, method } = options
-  return new Promise((resolve, reject) => {
+  return new Promise<IResponse>((resolve, reject) => {
     if (method === 'POST') {
       Axios.post(baseUrl + url, data).then(response => {
         resolve(response.data)
