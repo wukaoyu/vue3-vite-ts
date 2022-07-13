@@ -1,11 +1,8 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from "vue-router";
+import routerArr from "./data";
 
 const routes:Array<RouteRecordRaw> = [
-  {
-    path: '/',
-    name: 'todoList',
-    component: () => import("@/views/index.vue")
-  },
+  ...routerArr,
   {
     path: '/login',
     name: 'login',

@@ -1,6 +1,11 @@
 <template>
-  <div>
-    <a-button>123</a-button>
+  <div class="bkg">
+    <div class="nav">
+      <Menu />
+    </div>
+    <div class="content">
+      <router-view></router-view>>
+    </div>
   </div>
 </template>
 
@@ -8,14 +13,12 @@
 import { ref } from 'vue'
 import { useStore } from 'vuex'
 
-import { login } from "@/api/login";
+import Menu from '@/components/menu.vue'
 
-const store = useStore()
-const count = ref(store.state.count)
-login({account: 'wukaoyu', password: '123456', identity: 1}).then(res => {
-  console.log(res)
-})
 </script>
 
 <style scoped lang="less">
+.bkg{
+  display: flex;
+}
 </style>
