@@ -8,6 +8,12 @@
       mode="inline"
       theme="dark"
       :inline-collapsed="collapsed">
+      <a-menu-item v-for="item in navData" :key="item.name">
+        <template #icon>
+          <PieChartOutlined />
+        </template>
+        <router-link :to="item.path">{{item.meta?.navName}}</router-link>
+      </a-menu-item>
       <a-menu-item key="1">
         <template #icon>
           <PieChartOutlined />
@@ -34,6 +40,10 @@
         <a-sub-menu key="sub3" title="Submenu">
           <a-menu-item key="11">Option 11</a-menu-item>
           <a-menu-item key="12">Option 12</a-menu-item>
+          <a-sub-menu key="sub4" title="Submenu">
+            <a-menu-item key="13">Option 11</a-menu-item>
+            <a-menu-item key="14">Option 12</a-menu-item>
+          </a-sub-menu>
         </a-sub-menu>
       </a-sub-menu>
     </a-menu>
@@ -42,6 +52,7 @@
 
 <script setup lang='ts'>
 import { ref } from 'vue'
+import routerArr  from "@/router/data";
 import {
   MenuFoldOutlined,
   MenuUnfoldOutlined,
@@ -53,6 +64,7 @@ import {
 } from '@ant-design/icons-vue';
 
 const collapsed = ref(false)
+const navData = ref(routerArr[0].children)
 
 const toggleCollapsed = () => {
   collapsed.value = !collapsed.value
