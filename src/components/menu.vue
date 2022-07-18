@@ -8,44 +8,23 @@
       mode="inline"
       theme="dark"
       :inline-collapsed="collapsed">
-      <a-menu-item v-for="item in navData" :key="item.name">
-        <template #icon>
-          <PieChartOutlined />
-        </template>
-        <router-link :to="item.path">{{item.meta?.navName}}</router-link>
-      </a-menu-item>
-      <a-menu-item key="1">
-        <template #icon>
-          <PieChartOutlined />
-        </template>
-        <span>Option 1</span>
-      </a-menu-item>
-      <a-sub-menu key="sub1">
-        <template #icon>
-          <MailOutlined />
-        </template>
-        <template #title>Navigation One</template>
-        <a-menu-item key="5">Option 5</a-menu-item>
-        <a-menu-item key="6">Option 6</a-menu-item>
-        <a-menu-item key="7">Option 7</a-menu-item>
-        <a-menu-item key="8">Option 8</a-menu-item>
-      </a-sub-menu>
-      <a-sub-menu key="sub2">
-        <template #icon>
-          <AppstoreOutlined />
-        </template>
-        <template #title>Navigation Two</template>
-        <a-menu-item key="9">Option 9</a-menu-item>
-        <a-menu-item key="10">Option 10</a-menu-item>
-        <a-sub-menu key="sub3" title="Submenu">
-          <a-menu-item key="11">Option 11</a-menu-item>
-          <a-menu-item key="12">Option 12</a-menu-item>
-          <a-sub-menu key="sub4" title="Submenu">
-            <a-menu-item key="13">Option 11</a-menu-item>
-            <a-menu-item key="14">Option 12</a-menu-item>
-          </a-sub-menu>
+      <MenuList :menuList="navData"></MenuList>
+      <!-- <div v-for="item in navData">
+        <a-sub-menu v-if="item.children">
+          <template #icon>
+            <component v-if="item.icon" :is="globalProperties.$antIcons[item.icon]"></component>
+          </template>
+          <template #title>{{item.meta?.navName}}</template>
+          <div v-for="childItem in item.children">
+            <a-menu-item >
+              <router-link :to="childItem.path">{{childItem.meta?.navName}}</router-link>
+            </a-menu-item>
+          </div>
         </a-sub-menu>
-      </a-sub-menu>
+        <a-menu-item v-else>
+          <router-link :to="item.path">{{item.meta?.navName}}</router-link>
+        </a-menu-item>
+      </div> -->
     </a-menu>
   </div>
 </template>
@@ -53,19 +32,11 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
 import routerArr  from "@/router/data";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  PieChartOutlined,
-  MailOutlined,
-  DesktopOutlined,
-  InboxOutlined,
-  AppstoreOutlined,
-} from '@ant-design/icons-vue';
+
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons-vue'
 
 const collapsed = ref(false)
 const navData = ref(routerArr[0].children)
-
 const toggleCollapsed = () => {
   collapsed.value = !collapsed.value
 }

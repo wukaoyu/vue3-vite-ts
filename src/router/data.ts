@@ -14,8 +14,10 @@ const routerArr:Array<RouteRecordRaw> = [
         path: '/antd',
         name: 'antd',
         component: () => import("@/views/empty.vue"),
+        icon: 'MailOutlined',
         meta: {
-          navName: 'antd练习'
+          navName: 'antd练习',
+          icon: 'MailOutlined', 
         },
         children: [
           {
@@ -24,6 +26,15 @@ const routerArr:Array<RouteRecordRaw> = [
             component: () => import("@/views/antd/form.vue"),
             meta: {
               navName: '表单',
+              keepAlive: true
+            },
+          },
+          {
+            path: '/antd/table',
+            name: 'antdTable',
+            component: () => import("@/views/antd/table.vue"),
+            meta: {
+              navName: '表格',
               keepAlive: true
             },
           }
