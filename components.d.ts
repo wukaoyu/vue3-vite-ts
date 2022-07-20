@@ -8,21 +8,13 @@ export {}
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AButton: typeof import('ant-design-vue/es')['Button']
-    AForm: typeof import('ant-design-vue/es')['Form']
-    AFormItem: typeof import('ant-design-vue/es')['FormItem']
-    AInput: typeof import('ant-design-vue/es')['Input']
-    AInputPassword: typeof import('ant-design-vue/es')['InputPassword']
+    ACard: typeof import('ant-design-vue/es')['Card']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
-    ARadio: typeof import('ant-design-vue/es')['Radio']
-    ARadioGroup: typeof import('ant-design-vue/es')['RadioGroup']
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
-    copy: typeof import('./src/components/menuList copy.vue')['default']
-    Icon: typeof import('./src/components/icon.vue')['default']
     Menu: typeof import('./src/components/menu.vue')['default']
     MenuList: typeof import('./src/components/menuList.vue')['default']
     MenuListChild: typeof import('./src/components/menuListChild.vue')['default']
-    MenuListTest: typeof import('./src/components/menuListTest.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

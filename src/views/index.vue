@@ -26,4 +26,11 @@ import Menu from '@/components/menu.vue'
 .bkg{
   display: flex;
 }
+.content{
+  height: 100vh;
+  box-sizing: border-box;
+  padding: 20px;
+  overflow: auto;
+  width: 100%;
+}
 </style>

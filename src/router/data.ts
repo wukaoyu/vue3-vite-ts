@@ -21,6 +21,15 @@ const routerArr:Array<RouteRecordRaw> = [
         },
         children: [
           {
+            path: '/antd/commonly',
+            name: 'antdCommonly',
+            component: () => import("@/views/antd/commonly.vue"),
+            meta: {
+              navName: '常用组件',
+              keepAlive: true
+            },
+          },
+          {
             path: '/antd/form',
             name: 'antdFrom',
             component: () => import("@/views/antd/form.vue"),
