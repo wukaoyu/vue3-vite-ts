@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-card title="按钮组件">
+    <a-card class="card" title="按钮组件" hoverable>
       <div class="handle">
         <p class="title">操作</p>
         <a-button @click="changeLoading">loading</a-button>
@@ -30,17 +30,34 @@
         <a-button ghost :size="btnSize" :danger="btnDanger" :shape="btnShape" :loading="isLoading" :disabled="isDisabled">默认按钮</a-button>
       </div>
     </a-card>
+    <a-card class="card" title="输入框" hoverable>
+      <a-space direction="vertical" style="width: 100%">
+        <a-input class="card-item" :value="inputValue" placeholder="placeholder"/>
+        <a-textarea class="card-item" :value="inputValue" placeholder="textarea的input" :auto-size="{minRows: 2, maxRows: 5}"/>
+        <a-input-search :value="inputValue" placeholder="input search text"  @search="btnSearch"/>
+        <a-input-search :value="inputValue" enter-button placeholder="设置了enter-button"  @search="btnSearch"/>
+        <a-input-search :value="inputValue" enter-button="Search" placeholder="enter-button赋值按钮会变成文字" @search="btnSearch"/>
+        <a-input-search :value="inputValue" placeholder="自定义搜索按钮" @search="btnSearch">
+            <template #enterButton>
+              <a-button>Custom</a-button>
+            </template>
+        </a-input-search>
+      </a-space>
+    </a-card>
   </div>
 </template>
 
 <script setup lang='ts'>
 import { ref } from 'vue'
 import { SearchOutlined } from '@ant-design/icons-vue';
+
 const btnSize = ref('default')
 const isLoading = ref(false)
 const btnDanger = ref(false)
 const isDisabled = ref(false)
 const btnShape = ref('default')
+
+const inputValue = ref('')
 
 // 更改按钮loading状态
 const changeLoading = () => {
@@ -65,11 +82,20 @@ const changeDisable = () => {
 const changeShape = (type: string) => {
   btnShape.value = type
 }
+
+// input-search点击事件
+const btnSearch = () => [
+  console.log('搜索按钮点击')
+]
+
 </script>
 
 <style scoped lang='less'>
 .handle{
   margin-bottom: 10px;
+}
+.card{
+  margin-bottom: 20px;
 }
 .content{
   margin-bottom: 20px;
