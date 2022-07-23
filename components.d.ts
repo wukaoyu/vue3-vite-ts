@@ -9,9 +9,13 @@ declare module '@vue/runtime-core' {
   export interface GlobalComponents {
     AButton: typeof import('ant-design-vue/es')['Button']
     ACard: typeof import('ant-design-vue/es')['Card']
+    AInput: typeof import('ant-design-vue/es')['Input']
+    AInputSearch: typeof import('ant-design-vue/es')['InputSearch']
     AMenu: typeof import('ant-design-vue/es')['Menu']
     AMenuItem: typeof import('ant-design-vue/es')['MenuItem']
+    ASpace: typeof import('ant-design-vue/es')['Space']
     ASubMenu: typeof import('ant-design-vue/es')['SubMenu']
+    ATextarea: typeof import('ant-design-vue/es')['Textarea']
     Menu: typeof import('./src/components/menu.vue')['default']
     MenuList: typeof import('./src/components/menuList.vue')['default']
     MenuListChild: typeof import('./src/components/menuListChild.vue')['default']
