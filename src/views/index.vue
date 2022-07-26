@@ -6,7 +6,7 @@
     <div class="content">
       <router-view v-if="$route.meta.keepAlive" v-slot="{ Component }">
         <keep-alive>
-          <component :is="Component" />
+          <component :is="Component" :key="$route.name"/>
         </keep-alive>
       </router-view>
       <router-view v-if="!$route.meta.keepAlive"></router-view>

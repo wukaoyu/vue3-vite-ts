@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-card class="card" title="按钮组件" hoverable>
+    <a-card class="card" title="按钮组件（button）" hoverable>
       <div class="handle">
         <p class="title">操作</p>
         <a-button @click="changeLoading">loading</a-button>
@@ -30,7 +30,7 @@
         <a-button ghost :size="btnSize" :danger="btnDanger" :shape="btnShape" :loading="isLoading" :disabled="isDisabled">默认按钮</a-button>
       </div>
     </a-card>
-    <a-card class="card" title="输入框" hoverable>
+    <a-card class="card" title="输入框（input）" hoverable>
       <a-space direction="vertical" style="width: 100%">
         <a-input class="card-item" v-model:value="inputValue" placeholder="placeholder"/>
         <a-textarea class="card-item" v-model:value="inputValue" placeholder="textarea的input" :auto-size="{minRows: 2, maxRows: 5}"/>
@@ -64,7 +64,7 @@
         <a-input v-model:value="inputValue" allow-clear placeholder="icon清除输入框内容"/>
       </a-space>
     </a-card>
-    <a-card title="单选框" hoverable>
+    <a-card class="card" title="单选框（radio）" hoverable>
       <a-space>
         <a-radio v-model:checked="radioChecked">基本用法</a-radio>
         <a-radio-group v-model:value="radioGroupChoose" :button-style="radioGroupChoose === 'd' ? 'solid' : ''">
@@ -81,6 +81,17 @@
         <a-radio-group v-model:value="redioOptionValue1" option-type="button" :options="plainOptions" />
         <a-radio-group v-model:value="redioOptionValue2" option-type="button" :options="optionsWithDisabled" button-style="solid"/>
         <a-radio-group v-model:value="redioOptionValue3" option-type="button" :options="optionsWithDisabled" disabled/>
+      </a-space>
+    </a-card>
+    <a-card class="card" title="多选框（checked）" hoverable>
+      <a-space direction="vertical">
+        <a-space>
+          <a-checkbox v-model:checked="checkAll" :indeterminate="checkIndeterminate" @change="chooseAllChecked">check all</a-checkbox>
+          <a-checkbox-group @change="checkedChange" v-model:value="checkedList" :options="plainOptions"></a-checkbox-group>
+        </a-space>
+        <a-space direction="vertical">
+          <a-checkbox-group></a-checkbox-group>
+        </a-space>
       </a-space>
     </a-card>
   </div>
@@ -113,6 +124,14 @@ const optionsWithDisabled = ref<RadioGroupProps['options']>([
   { value: 'Pear', label: 'Pear', disabled: true },
   { value: 'Orange', label: 'Orange' }
 ])
+
+const checkAll = ref<boolean>(false)
+const checkIndeterminate = ref<boolean>(false)
+const checkedList = ref<Array<string>>([])
+const checkedValue1 = ref<Array<string>>([])
+const checkedValue2 = ref<Array<string>>([])
+const checkedValue3 = ref<Array<string>>([])
+
 // 更改按钮loading状态
 const changeLoading = () => {
   isLoading.value = !isLoading.value
@@ -141,6 +160,26 @@ const changeShape = (type: string) => {
 const btnSearch = () => {
   console.log('搜索按钮点击')
   console.log(inputValue.value)
+}
+
+// 全选按钮
+const chooseAllChecked = (e:any) => {
+  checkIndeterminate.value = false
+  checkedList.value = e.target.checked ? plainOptions.value : []
+}
+
+// 改变选项
+const checkedChange = (data: Array<string>) => {
+  if (data.length === plainOptions.value.length) {
+    checkAll.value = true
+    checkIndeterminate.value = false
+  } else if (data.length === 0) {
+    checkAll.value = false
+    checkIndeterminate.value = false
+  } else {
+    checkAll.value = false
+    checkIndeterminate.value = true
+  }
 }
 
 </script>
