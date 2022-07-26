@@ -64,9 +64,23 @@
         <a-input v-model:value="inputValue" allow-clear placeholder="icon清除输入框内容"/>
       </a-space>
     </a-card>
-    <a-card>
+    <a-card title="单选框" hoverable>
       <a-space>
-        
+        <a-radio v-model:checked="radioChecked">基本用法</a-radio>
+        <a-radio-group v-model:value="radioGroupChoose" :button-style="radioGroupChoose === 'd' ? 'solid' : ''">
+          <a-radio-button value="a">radio按钮选择a</a-radio-button>
+          <a-radio-button value="b" disabled>radio按钮选择b</a-radio-button>
+          <a-radio-button value="c">radio按钮选择c</a-radio-button>
+          <a-radio-button value="d">实低选择风格</a-radio-button>
+        </a-radio-group>
+      </a-space>
+      <a-space direction="vertical" style="width: 100%; margin-top: 10px;">
+        <a-radio-group v-model:value="redioOptionValue1" :options="plainOptions" />
+        <a-radio-group v-model:value="redioOptionValue2" :options="optionsWithDisabled" />
+        <a-radio-group v-model:value="redioOptionValue3" :options="optionsWithDisabled" disabled/>
+        <a-radio-group v-model:value="redioOptionValue1" option-type="button" :options="plainOptions" />
+        <a-radio-group v-model:value="redioOptionValue2" option-type="button" :options="optionsWithDisabled" button-style="solid"/>
+        <a-radio-group v-model:value="redioOptionValue3" option-type="button" :options="optionsWithDisabled" disabled/>
       </a-space>
     </a-card>
   </div>
@@ -75,17 +89,30 @@
 <script setup lang='ts'>
 import { ref } from 'vue'
 import { SearchOutlined } from '@ant-design/icons-vue';
+import { RadioGroupProps } from 'ant-design-vue';
 
-const btnSize = ref('default')
-const isLoading = ref(false)
-const btnDanger = ref(false)
-const isDisabled = ref(false)
-const btnShape = ref('default')
+const btnSize = ref<string>('default')
+const isLoading = ref<boolean>(false)
+const btnDanger = ref<boolean>(false)
+const isDisabled = ref<boolean>(false)
+const btnShape = ref<string>('default')
 
-const inputValue = ref('')
-const inputBeforeValue = ref('Http://')
-const inputAfterValue = ref('.com')
+const inputValue = ref<string>('')
+const inputBeforeValue = ref<string>('Http://')
+const inputAfterValue = ref<string>('.com')
 
+const radioChecked = ref<boolean>(false)
+const radioGroupChoose = ref<string>('')
+const redioOptionValue1 = ref<string>('Apple')
+const redioOptionValue2 = ref<string>('Apple')
+const redioOptionValue3 = ref<string>('Apple')
+
+const plainOptions = ref<Array<string>>(['Apple', 'Pear', 'Orange'])
+const optionsWithDisabled = ref<RadioGroupProps['options']>([
+  { value: 'Apple', label: 'Apple' },
+  { value: 'Pear', label: 'Pear', disabled: true },
+  { value: 'Orange', label: 'Orange' }
+])
 // 更改按钮loading状态
 const changeLoading = () => {
   isLoading.value = !isLoading.value

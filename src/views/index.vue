@@ -32,5 +32,6 @@ import Menu from '@/components/menu.vue'
   padding: 20px;
   overflow: auto;
   width: 100%;
+  background-color: #f5f5f5;
 }
 </style>
