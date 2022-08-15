@@ -1,11 +1,12 @@
 <template>
   <div>
-    <router-view v-if="$route.meta.keepAlive" v-slot="{ Component }">
+    <!-- <router-view v-slot="{ Component, route }">
       <keep-alive>
-        <component :is="Component" :key="$route.name"/>
+        <component :is="Component" :key="route.name"/>
       </keep-alive>
-    </router-view>
-    <router-view v-if="!$route.meta.keepAlive"></router-view>
+      <component :is="Component" :key="route.name" v-if="!route.meta.keepAlive" />
+    </router-view> -->
+    <router-view></router-view>
   </div>
 </template>
 

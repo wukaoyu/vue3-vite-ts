@@ -64,6 +64,28 @@
         <a-input v-model:value="inputValue" allow-clear placeholder="icon清除输入框内容"/>
       </a-space>
     </a-card>
+    <a-card class="card" title="数字输入框（inputNumber）" hoverable>
+      <a-space direction="vertical" style="width: 100%">
+        <a-input-number v-model:value="inputNumber"></a-input-number>
+        <a-input-number v-model:value="inputNumber" addon-after="$" addon-before="+"></a-input-number>
+        <a-input-number v-model:value="inputNumber">
+          <template #addonBefore>
+            <a-select v-model:value="inputNumberSelectBefore" style="width: 60px">
+              <a-select-option value="add">+</a-select-option>
+              <a-select-option value="minus">-</a-select-option>
+            </a-select>
+          </template>
+          <template #addonAfter>
+            <a-select v-model:value="inputNumberSelectAfter" style="width: 60px;">
+              <a-select-option value="USD">$</a-select-option>
+              <a-select-option value="EUR">€</a-select-option>
+              <a-select-option value="GBP">£</a-select-option>
+              <a-select-option value="CNY">¥</a-select-option>
+            </a-select>
+          </template>
+        </a-input-number>
+      </a-space>
+    </a-card>
     <a-card class="card" title="单选框（radio）" hoverable>
       <a-space>
         <a-radio v-model:checked="radioChecked">基本用法</a-radio>
@@ -90,7 +112,9 @@
           <a-checkbox-group @change="checkedChange" v-model:value="checkedList" :options="plainOptions"></a-checkbox-group>
         </a-space>
         <a-space direction="vertical">
-          <a-checkbox-group></a-checkbox-group>
+          <a-checkbox-group v-model:value="checkedValue1" :options="plainOptions"></a-checkbox-group>
+          <a-checkbox-group v-model:value="checkedValue2" :options="optionsWithDisabled"></a-checkbox-group>
+          <a-checkbox-group v-model:value="checkedValue3" :options="optionsWithDisabled" disabled></a-checkbox-group>
         </a-space>
       </a-space>
     </a-card>
@@ -111,6 +135,10 @@ const btnShape = ref<string>('default')
 const inputValue = ref<string>('')
 const inputBeforeValue = ref<string>('Http://')
 const inputAfterValue = ref<string>('.com')
+
+const inputNumber = ref<number>(0)
+const inputNumberSelectBefore = ref<string>('add')
+const inputNumberSelectAfter = ref<string>('CNY')
 
 const radioChecked = ref<boolean>(false)
 const radioGroupChoose = ref<string>('')
