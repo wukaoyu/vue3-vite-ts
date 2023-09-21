@@ -9,4 +9,7 @@ import { ref } from 'vue'
 </script>
 
 <style scoped lang='less'>
+.a{
+  position: relative;
+}
 </style>
